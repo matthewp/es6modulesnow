@@ -1,5 +1,3 @@
-(function() {
-var root = {};
 /**
  * almond 0.2.5 Copyright (c) 2011-2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -427,6 +425,7 @@ var requirejs, require, define;
         jQuery: true
     };
 }());
+
 (function() {
   "use strict";
 
@@ -635,6 +634,7 @@ var requirejs, require, define;
   root.ScriptBuilder = ScriptBuilder;
 
 })();
+
 (function() {
   "use strict";
 
@@ -673,6 +673,7 @@ var requirejs, require, define;
   root.JavaScriptBuilder = JavaScriptBuilder;
 
 })();
+
 (function() {
   "use strict";
 
@@ -768,6 +769,7 @@ var requirejs, require, define;
   root.AbstractCompiler = AbstractCompiler;
 
 })();
+
 (function() {
   "use strict";
 
@@ -831,6 +833,7 @@ var requirejs, require, define;
   root.AMDCompiler = AMDCompiler;
 
 })();
+
 (function() {
   "use strict";
 
@@ -960,6 +963,7 @@ var requirejs, require, define;
   root.Compiler = Compiler;
 
 })();
+
 (function() {
 var oldRequire = require,
     Compiler = root.Compiler;
@@ -991,7 +995,8 @@ function syncGet(path) {
     return req.responseText;
   }
 }
-})();/*
+})();
+/*
  * es6-module-loader
  * https://github.com/addyosmani/es6-module-loader
  *
@@ -1225,5 +1230,3 @@ function syncGet(path) {
 
 
 })(window);
-
-})();
