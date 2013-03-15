@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Testing</title>
+    <script src="../es6-modules-now.js"></script>
+  </head>
+  <body>
+  <div id="testbed"></div>
+  <script>
+    System.load('test.js', function(test) {
+      var d1 = document.createElement('div');
+      d1.textContent = test.foo;
+      var d2 = document.createElement('div');
+      d2.textContent = test.toast.jam;
+      
+      var d3 = document.createElement('div');
+      d3.textContent = test.foo === 'bar' && test.toast.jam === 'grape'
+        ? 'Test successful!'
+        : 'Test failed :(';
+
+      var testbed = document.getElementById('testbed');
+      [d1, d2, d3].forEach(function(d) {
+        testbed.appendChild(d);
+      });
+    });
+  </script>
+  </body>
+</html>
