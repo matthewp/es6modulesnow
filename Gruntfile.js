@@ -18,6 +18,10 @@ module.exports = function(grunt) {
       dist: {
         src: files.map(function(f) { return 'src/' + f }),
         dest: outFile
+      },
+      options: {
+        banner: '(function() {\nvar root = {};\n',
+        footer: '\n})();'
       }
     },
     uglify: {
