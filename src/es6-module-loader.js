@@ -97,9 +97,11 @@
   // The eval method takes a string representing a Program and returns
   // the result of compiling and executing the program.
   Loader.prototype.eval = function (sourceText) {
-    with(this._global) {
+    /*with(this._global) {
       eval(sourceText);
-    }
+    }*/
+   var fn = new Function(sourceText);
+   return fn();
   };
 
 
@@ -180,7 +182,7 @@
 
       return mio;
     }
-  };
+  }
 
 
   // Pre-configured Loader instance for easier use

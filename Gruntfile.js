@@ -34,6 +34,7 @@ module.exports = function(grunt) {
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js'],
       options: {
+        evil: true,
         es5: true,
         eqnull: true,
         laxbreak: true,
