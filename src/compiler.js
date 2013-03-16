@@ -43,13 +43,13 @@
 
     Compiler.prototype.parseLine = function(line) {
       var match;
-      if (match = this.matchLine(line, EXPORT_AS)) {
+      if ((match = this.matchLine(line, EXPORT_AS))) {
         return this.processExportAs(match);
-      } else if (match = this.matchLine(line, EXPORT)) {
+      } else if ((match = this.matchLine(line, EXPORT))) {
         return this.processExport(match);
-      } else if (match = this.matchLine(line, IMPORT_AS)) {
+      } else if ((match = this.matchLine(line, IMPORT_AS))) {
         return this.processImportAs(match);
-      } else if (match = this.matchLine(line, IMPORT)) {
+      } else if ((match = this.matchLine(line, IMPORT))) {
         return this.processImport(match);
       } else {
         return this.processLine(line);
@@ -66,7 +66,8 @@
     };
 
     Compiler.prototype.processExportAs = function(match) {
-      return this.exportAs = match[1];
+      var e = this.exportAs = match[1];
+      return e;
     };
 
     Compiler.prototype.processExport = function(match) {
@@ -90,7 +91,8 @@
     };
 
     Compiler.prototype.processImportAs = function(match) {
-      return this.importAs[match[1] || match[2]] = match[3];
+      var ia = this.importAs[match[1] || match[2]] = match[3];
+      return ia;
     };
 
     Compiler.prototype.processImport = function(match) {
@@ -109,7 +111,8 @@
         }
         return _results;
       })();
-      return this.imports[match[2] || match[3]] = importNames;
+      var imN = this.imports[match[2] || match[3]] = importNames;
+      return imN;
     };
 
     Compiler.prototype.processLine = function(line) {
