@@ -448,13 +448,13 @@ var requirejs, require, define;
 
   ScriptBuilder = (function() {
 
-    ScriptBuilder.prototype["break"] = BREAK;
-
-    ScriptBuilder.prototype.global = 'window';
-
     function ScriptBuilder() {
       this.buffer = [];
     }
+
+    ScriptBuilder.prototype["break"] = BREAK;
+
+    ScriptBuilder.prototype.global = 'window';
 
     ScriptBuilder.prototype.useStrict = function() {
       return this.line('"use strict"');
@@ -638,8 +638,6 @@ var requirejs, require, define;
 })();
 
 (function() {
-  "use strict";
-
   var JavaScriptBuilder, ScriptBuilder,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -648,11 +646,11 @@ var requirejs, require, define;
 
   JavaScriptBuilder = (function(_super) {
 
-    __extends(JavaScriptBuilder, _super);
-
     function JavaScriptBuilder() {
       return JavaScriptBuilder.__super__.constructor.apply(this, arguments);
     }
+
+    __extends(JavaScriptBuilder, _super);
 
     JavaScriptBuilder.prototype.eol = ';';
 
@@ -1097,9 +1095,11 @@ function syncGet(path) {
   // The eval method takes a string representing a Program and returns
   // the result of compiling and executing the program.
   Loader.prototype.eval = function (sourceText) {
-    with(this._global) {
+    /*with(this._global) {
       eval(sourceText);
-    }
+    }*/
+   var fn = new Function(sourceText);
+   return fn();
   };
 
 
@@ -1166,21 +1166,23 @@ function syncGet(path) {
 
       var mio = Object.create(null);
 
+      var doFor = function (key) {
+        Object.defineProperty(mio, key, {
+          configurable: false,
+          enumerable: true,
+          get: function () {
+            return obj[key];
+          }
+        });
+      };
+
       for (var key in obj) {
-        (function (key) {
-          Object.defineProperty(mio, key, {
-            configurable: false,
-            enumerable: true,
-            get: function () {
-              return obj[key];
-            }
-          });
-        })(key);
+        doFor(key);
       }
 
       return mio;
     }
-  };
+  }
 
 
   // Pre-configured Loader instance for easier use
@@ -1215,7 +1217,7 @@ function syncGet(path) {
   var compile = function(src, name, baseURL) {
     var cc = new root.Compiler(src, name);
     var str = cc.toAMD();
-    str += "\nreturn require('" + name +"');"
+    str += "\nreturn require('" + name +"');";
     // add sourceURL so these are treated as script files in a debugger
     str += '\n//@ sourceURL=' + baseURL + name;
     
