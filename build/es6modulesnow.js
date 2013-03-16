@@ -998,6 +998,7 @@ function syncGet(path) {
   }
 }
 })();
+
 /*
  * es6-module-loader
  * https://github.com/addyosmani/es6-module-loader

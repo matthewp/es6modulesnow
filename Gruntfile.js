@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     'compiler.js',
     'load.js',
     'es6-module-loader.js',
-    'load-opt-ins.js'
+    'opt-ins.js'
   ];
 
   grunt.initConfig({
