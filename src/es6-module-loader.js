@@ -168,16 +168,18 @@
 
       var mio = Object.create(null);
 
+      var doFor = function (key) {
+        Object.defineProperty(mio, key, {
+          configurable: false,
+          enumerable: true,
+          get: function () {
+            return obj[key];
+          }
+        });
+      };
+
       for (var key in obj) {
-        (function (key) {
-          Object.defineProperty(mio, key, {
-            configurable: false,
-            enumerable: true,
-            get: function () {
-              return obj[key];
-            }
-          });
-        })(key);
+        doFor(key);
       }
 
       return mio;
@@ -217,7 +219,7 @@
   var compile = function(src, name, baseURL) {
     var cc = new root.Compiler(src, name);
     var str = cc.toAMD();
-    str += "\nreturn require('" + name +"');"
+    str += "\nreturn require('" + name +"');";
     // add sourceURL so these are treated as script files in a debugger
     str += '\n//@ sourceURL=' + baseURL + name;
     
