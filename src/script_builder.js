@@ -18,13 +18,13 @@
 
   ScriptBuilder = (function() {
 
-    ScriptBuilder.prototype["break"] = BREAK;
-
-    ScriptBuilder.prototype.global = 'window';
-
     function ScriptBuilder() {
       this.buffer = [];
     }
+
+    ScriptBuilder.prototype["break"] = BREAK;
+
+    ScriptBuilder.prototype.global = 'window';
 
     ScriptBuilder.prototype.useStrict = function() {
       return this.line('"use strict"');
