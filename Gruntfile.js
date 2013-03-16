@@ -10,7 +10,8 @@ module.exports = function(grunt) {
     'amd_compiler.js',
     'compiler.js',
     'load.js',
-    'es6-module-loader.js'
+    'es6-module-loader.js',
+    'load-opt-ins.js'
   ];
 
   grunt.initConfig({

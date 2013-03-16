@@ -1008,6 +1008,7 @@ function syncGet(path) {
 
 (function (global) {
 
+  var noop = function() {};
 
   // new Loader( parent [, options ] ) - Module loader constructor
   // The Loader constructor creates a new loader. The first argument is the
@@ -1063,6 +1064,7 @@ function syncGet(path) {
   // associated with this loader, and its URL is the given URL. The
   // additional callback is used if an error occurs.
   Loader.prototype.load = function (url, callback, errback) {
+    callback = callback || noop;
     var key = this._resolve(url, this._baseURL);
     if (this._mios[key]) {
       callback(this._mios[key]);
@@ -1236,5 +1238,19 @@ function syncGet(path) {
 
 
 })(window);
+
+window.addEventListener('load', function onload() {
+  window.removeEventListener('load', onload, false);
+
+  var tags = document.querySelectorAll('script');
+  Array.prototype.forEach.call(tags, function(tag) {
+    var src = tag.dataset.src;
+    if(!src || !tag.type || tag.type !== 'application/harmony') {
+      return;
+    }
+
+    System.load(src);
+  });
+}, false);
 
 })();

@@ -8,6 +8,7 @@
 
 (function (global) {
 
+  var noop = function() {};
 
   // new Loader( parent [, options ] ) - Module loader constructor
   // The Loader constructor creates a new loader. The first argument is the
@@ -63,6 +64,7 @@
   // associated with this loader, and its URL is the given URL. The
   // additional callback is used if an error occurs.
   Loader.prototype.load = function (url, callback, errback) {
+    callback = callback || noop;
     var key = this._resolve(url, this._baseURL);
     if (this._mios[key]) {
       callback(this._mios[key]);
