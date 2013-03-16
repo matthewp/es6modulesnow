@@ -5,7 +5,6 @@
  */
 //Going sloppy to avoid 'use strict' string cost, but strict practices should
 //be followed.
-/*jslint sloppy: true */
 /*global setTimeout: false */
 
 var requirejs, require, define;
@@ -241,9 +240,10 @@ var requirejs, require, define;
         exports: function (name) {
             var e = defined[name];
             if (typeof e !== 'undefined') {
-                return e;
+              return e;
             } else {
-                return (defined[name] = {});
+              defined[name] = {};
+              return defined[name];
             }
         },
         module: function (name) {
