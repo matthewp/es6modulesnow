@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
       dist: {
-        src: files.map(function(f) { return 'src/' + f }),
+        src: files.map(function(f) { return 'src/' + f; }),
         dest: outFile
       },
       options: {

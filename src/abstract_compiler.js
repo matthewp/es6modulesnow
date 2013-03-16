@@ -77,11 +77,12 @@
     AbstractCompiler.prototype.buildImportsForPreamble = function(builder, imports_, dependencyName) {
       var import_, _i, _len, _results;
       _results = [];
+      var fn = function(im) {
+        return builder.prop(dependencyName, im);
+      };
       for (_i = 0, _len = imports_.length; _i < _len; _i++) {
         import_ = imports_[_i];
-        _results.push(builder.set(import_, function() {
-          return builder.prop(dependencyName, import_);
-        }));
+        _results.push(builder.set(import_, fn(import_)));
       }
       return _results;
     };

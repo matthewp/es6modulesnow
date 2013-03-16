@@ -753,11 +753,12 @@ var requirejs, require, define;
     AbstractCompiler.prototype.buildImportsForPreamble = function(builder, imports_, dependencyName) {
       var import_, _i, _len, _results;
       _results = [];
+      var fn = function(im) {
+        return builder.prop(dependencyName, im);
+      };
       for (_i = 0, _len = imports_.length; _i < _len; _i++) {
         import_ = imports_[_i];
-        _results.push(builder.set(import_, function() {
-          return builder.prop(dependencyName, import_);
-        }));
+        _results.push(builder.set(import_, fn(import_)));
       }
       return _results;
     };
@@ -771,8 +772,6 @@ var requirejs, require, define;
 })();
 
 (function() {
-  "use strict";
-
   var AMDCompiler, AbstractCompiler,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -781,11 +780,11 @@ var requirejs, require, define;
 
   AMDCompiler = (function(_super) {
 
-    __extends(AMDCompiler, _super);
-
     function AMDCompiler() {
       return AMDCompiler.__super__.constructor.apply(this, arguments);
     }
+
+    __extends(AMDCompiler, _super);
 
     AMDCompiler.prototype.stringify = function() {
       var _this = this;
