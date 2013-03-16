@@ -8,7 +8,7 @@ Simply write modules with the [ES6 style](http://wiki.ecmascript.org/doku.php?id
 
 Include the es6modulesnow library in your page and then simple add harmony compatible script tags like so:
 
-    ```html  
-    <script src="es6modulesnow.min.js"></script>
-    <script type="application/harmony" data-src="mymodule.js"></script>
-    ```
+```html  
+<script src="es6modulesnow.min.js"></script>
+<script type="application/harmony" data-src="mymodule.js"></script>
+```
