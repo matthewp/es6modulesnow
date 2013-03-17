@@ -10,5 +10,17 @@ Include the es6modulesnow library in your page and then simple add harmony compa
 
 ```html  
 <script src="es6modulesnow.min.js"></script>
-<script type="application/harmony" data-src="mymodule.js"></script>
+<script type="application/harmony" data-src="main.js"></script>
+```
+
+## System loader
+
+A system module loader is also included and can be used:
+
+```html
+<script>
+System.load('main.js', function(mainModule) {
+  // Do stuff with your module.
+});
+</script>
 ```
