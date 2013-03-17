@@ -18,9 +18,20 @@ Include the es6modulesnow library in your page and then simple add harmony compa
 A system module loader is also included and can be used:
 
 ```html
+<script src="es6modulesnow.min.js"></script>
 <script>
 System.load('main.js', function(mainModule) {
   // Do stuff with your module.
 });
 </script>
 ```
+
+## Credit
+
+Most of the work of this project has been done by others. I merely pieced together these packages (and to some degree bent them to my needs):
+
+* [es6-module-transpiler](https://github.com/square/es6-module-transpiler) - Does the hard work of transpiling the ES6 module system into AMD modules. This project works in Node, so if you are hoping for a compile-time solution, this is probably the way to go. I merely broke this package apart into the pieces I needed and removed the Node dependencies.
+
+* [es6-module-loader](https://github.com/addyosmani/es6-module-loader) - Provides module loading capabilities.
+
+* [Almond](https://github.com/jrburke/almond) - Rather than build my own dependency manager, I just use Almond.
